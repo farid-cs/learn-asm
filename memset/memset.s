@@ -1,17 +1,17 @@
-%define NULL 0
+format ELF64
 
-global memset
+public memset
 memset:
-	cmp	rdi, NULL
-	je	return
-while:
+	cmp	rdi, 0
+	je	_return
+_loop:
 	cmp	rdx, 0
-	je	return
-next_byte:
+	jne	_set_byte
+_return:
+	mov	rax, rsi
+	ret
+_set_byte:
 	mov	[rdi], sil
 	add	rdi, 1
 	sub	rdx, 1
-	jmp	while
-return:
-	mov	rax, rsi
-	ret
+	jmp	_loop

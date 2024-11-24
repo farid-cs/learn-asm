@@ -1,20 +1,22 @@
 #include <stdio.h>
 
-extern void* memset(void* s, int c, size_t n);
+void *memset(void *s, int c, size_t n);
 
-void print_array(char* arr, size_t size)
+void
+print_array(char *arr, size_t size)
 {
 	printf("{ ");
 
 	for (int i = 0; i < size - 1; i++) {
-		printf("%d, ", (int)arr[i]);
+		printf("%d, ", arr[i]);
 	}
-	printf("%d", (int)arr[size-1]);
+	printf("%d", arr[size-1]);
 
 	printf(" }\n");
 }
 
-int main(void)
+int
+main(void)
 {
 	char arr[] = {1, 2, 3, 10, 24, 30};
 

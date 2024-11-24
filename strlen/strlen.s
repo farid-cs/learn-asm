@@ -1,15 +1,16 @@
-global strlen
+format ELF64
+
+public strlen
 strlen:
 	mov	rdx, rdi
 	mov	rcx, rdi
-check_current_byte:
+_loop:
 	mov	al, [rcx]
 	cmp	al, 0
-	je	end_of_string
-next_byte:
-	add	rcx, 1
-	jmp	check_current_byte
-end_of_string:
+	jne	_next_byte
 	mov	rax, rcx
 	sub	rax, rdx
 	ret
+_next_byte:
+	add	rcx, 1
+	jmp	_loop
